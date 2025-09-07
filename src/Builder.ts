@@ -8,7 +8,7 @@ export class Builder {
   static async build() {
     const builder = new Builder();
     builder.browser = await puppeteer.launch({
-      headless: 'new',
+      headless: true,
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     builder.page = await builder.browser.newPage();
