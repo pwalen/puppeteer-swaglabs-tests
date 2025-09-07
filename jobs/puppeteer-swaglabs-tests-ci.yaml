@@ -1,0 +1,28 @@
+- job:
+    name: puppeteer-swaglabs-tests-ci
+    project-type: freestyle
+    description: 'CI for puppeteer-swaglabs-tests: npm ci + build + test'
+    scm:
+      - git:
+          url: 'https://github.com/pwalen/puppeteer-swaglabs-tests.git'
+          branches:
+            - '*/main'
+          wipe-workspace: true
+    wrappers:
+      - nodejs-installator:
+          name: 'node22' # must match Tools → NodeJS name
+    builders:
+      - shell: |
+          echo "Node version:"
+          node -v
+          echo "NPM version:"
+          npm -v
+
+          echo "Install dependencies (clean):"
+          npm ci
+
+          echo "Build (TypeScript → dist):"
+          npm run build
+
+          echo "Run tests:"
+          npm test

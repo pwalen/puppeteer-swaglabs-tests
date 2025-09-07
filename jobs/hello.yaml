@@ -1,0 +1,7 @@
+- job:
+    name: hello-from-jjb
+    project-type: freestyle
+    description: 'Sanity check: JJB can communicate with Jenkins'
+    builders:
+      - shell: |
+          echo "Hello from JJB!"
