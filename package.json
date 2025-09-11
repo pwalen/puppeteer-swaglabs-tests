@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && mocha \"dist/tests/**/*.js\" --timeout 30000"
+    "test": "npm run build && mocha \"dist/tests/**/*.js\" --timeout 30000",
+    "test:ci": "mocha \"dist/tests/**/*.js\" --timeout 30000 --reporter mocha-junit-reporter --reporter-option mochaFile=reports/junit/test-results.xml,testsuitesTitle=SwagLabs-E2E"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "@types/node": "^24.3.1",
     "chai": "^6.0.1",
     "mocha": "^11.7.2",
+    "mocha-junit-reporter": "^2.2.1",
     "puppeteer": "^24.19.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
