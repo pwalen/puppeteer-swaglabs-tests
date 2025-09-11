@@ -31,3 +31,9 @@
           results: 'reports/junit/*.xml'
           keep-long-stdio: true
           health-scale-factor: 1.0
+          skip-publishing-checks: true
+          allow-empty-results: false
+      - archive:
+          artifacts: 'reports/junit/*.xml'
+          only-if-success: true
+          allow-empty: false
