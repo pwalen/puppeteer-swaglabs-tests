@@ -20,4 +20,28 @@ export class Builder {
       await this.browser.close();
     }
   }
+
+  async waitAndType(selector: string, text: string): Promise<void> {
+    await this.page.waitForSelector(selector);
+    await this.page.type(selector, text);
+  }
+
+  async waitAndClick(selector: string): Promise<void> {
+    await this.page.waitForSelector(selector);
+    await this.page.click(selector);
+  }
+
+  async goToURL(url: string): Promise<void> {
+    await this.page.goto(url);
+  }
+
+  async getText(selector: string): Promise<string> {
+    const text = await this.page.waitForSelector(selector);
+    return await this.page.evaluate((el) => (el ? el.textContent : ''), text);
+  }
+
+  async getPageTitle(): Promise<string> {
+    const title = await this.page.title();
+    return title;
+  }
 }
