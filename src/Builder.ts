@@ -35,6 +35,11 @@ export class Builder {
     await this.page.goto(url);
   }
 
+  async getPageURL(): Promise<string> {
+    const url = await this.page.url();
+    return url;
+  }
+
   async getText(selector: string): Promise<string> {
     const text = await this.page.waitForSelector(selector);
     return await this.page.evaluate((el) => (el ? el.textContent : ''), text);
@@ -43,5 +48,16 @@ export class Builder {
   async getPageTitle(): Promise<string> {
     const title = await this.page.title();
     return title;
+  }
+
+  async isElementVisible(selector: string): Promise<boolean> {
+    try {
+      const element = await this.page.waitForSelector(selector, {
+        timeout: 2000,
+      });
+      return element != null;
+    } catch {
+      return false;
+    }
   }
 }
