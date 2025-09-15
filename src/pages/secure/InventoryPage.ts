@@ -1,4 +1,5 @@
 import { Builder } from '../../Builder';
+import { INVENTORY_LOCATORS as I } from '../locators';
 
 export class InventoryPage {
   private builder: Builder;
@@ -12,8 +13,8 @@ export class InventoryPage {
     return url;
   }
 
-  async isInventoryListVisible(selector: string): Promise<boolean> {
-    const inventoryList = await this.builder.isElementVisible(selector);
+  async isInventoryListVisible(): Promise<boolean> {
+    const inventoryList = await this.builder.isElementVisible(I.LIST);
     return inventoryList;
   }
 }

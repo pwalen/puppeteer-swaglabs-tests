@@ -34,7 +34,7 @@ describe('Login path - incorrect credentials', function () {
   });
 
   step('Should have correct error message', async () => {
-    const errorMessage = await loginPage.getErrorText('[data-test="error"]');
+    const errorMessage = await loginPage.getErrorText();
     expect(errorMessage).to.contain('Username and password do not match');
   });
 });
@@ -65,7 +65,7 @@ describe('Login path - correct credentials', function () {
     expect(title).to.contain('Swag Labs');
   });
 
-  step('Should enter and submmit correct credentials', async () => {
+  step('Should enter and submit correct credentials', async () => {
     await loginPage.login('standard_user', 'secret_sauce');
   });
 
@@ -75,9 +75,7 @@ describe('Login path - correct credentials', function () {
   });
 
   step('Should contain inventory list', async () => {
-    const inventoryList = await inventoryPage.isInventoryListVisible(
-      '[data-test="inventory-list"]'
-    );
+    const inventoryList = await inventoryPage.isInventoryListVisible();
     expect(inventoryList).to.be.true;
   });
 });

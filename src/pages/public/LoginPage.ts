@@ -1,4 +1,6 @@
 import { Builder } from '../../Builder';
+import { LOGIN_LOCATORS as L } from '../locators';
+import { URLS } from '../urls';
 
 export class LoginPage {
   private builder: Builder;
@@ -8,7 +10,7 @@ export class LoginPage {
   }
 
   async open(): Promise<void> {
-    await this.builder.goToURL('https://www.saucedemo.com/');
+    await this.builder.goToURL(URLS.URL_LOGIN_PAGE);
   }
 
   async getPageTitle(): Promise<string> {
@@ -17,12 +19,12 @@ export class LoginPage {
   }
 
   async login(username: string, password: string): Promise<void> {
-    await this.builder.waitAndType('#user-name', username);
-    await this.builder.waitAndType('#password', password);
-    await this.builder.waitAndClick('#login-button');
+    await this.builder.waitAndType(L.USERNAME, username);
+    await this.builder.waitAndType(L.PASSWORD, password);
+    await this.builder.waitAndClick(L.SUBMIT);
   }
-  async getErrorText(selector: string): Promise<string> {
-    const errorText = await this.builder.getText(selector);
+  async getErrorText(): Promise<string> {
+    const errorText = await this.builder.getText(L.ERROR);
     return errorText;
   }
 }
